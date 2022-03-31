@@ -27,6 +27,13 @@ handler.put(async (req, res) => {
     product.brand = req.body.brand;
     product.countInStock = req.body.countInStock;
     product.description = req.body.description;
+    product.core=req.body.core;
+    product.ram=req.body.ram;
+    product.disk=req.body.disk;
+    product.modal=req.body.modal;
+    product.generation=req.body.generation;
+    product.display=req.body.display;
+
     await product.save();
     await db.disconnect();
     res.send({ message: 'Product Updated Successfully' });

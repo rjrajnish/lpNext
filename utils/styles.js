@@ -21,11 +21,14 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '90%',
   },
   footer: {
-    marginTop: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0.87)',
-    textAlign: 'center',
+    padding: '50px 0 20px 0',
+    backgroundColor: '#203040',
+    textAlign: 'left',
     width: '100%',
   },
+  footerPad: { paddingBottom: '20px', textAlign: 'center',
+  
+   '& span': {color:'#02b6e5'} },
   section: {
     marginTop: 10,
     marginBottom: 10,
@@ -62,18 +65,24 @@ const useStyles = makeStyles((theme) => ({
     underline: 'always',
   },
   menuButton: { padding: 0 },
-  mt1: { marginTop: '1rem' },
+  mt1: { marginTop: '1rem'  },
   // search
   searchSection: {
     display: 'none',
+     
     [theme.breakpoints.up('md')]: {
       display: 'flex',
     },
+    fontSize: '15px',
   },
   searchForm: {
     border: '1px solid #ffffff',
     backgroundColor: '#ffffff',
     borderRadius: 5,
+    '& button: hover':{
+      backgroundColor:'#02b6e5' ,
+     
+    }
   },
   searchInput: {
     paddingLeft: 5,
@@ -87,9 +96,14 @@ const useStyles = makeStyles((theme) => ({
     padding: 5,
     borderRadius: '0 5px 5px 0',
     '& span': {
-      color: '#000000',
+      color: '#fff',
     },
+    '& span:hover':{
+      color:'#02b6e5'
+    },
+    
   },
+  
   sort: {
     marginRight: 5,
   },
@@ -97,28 +111,28 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
   },
   facebook: {
-    marginRight: '10px',
-    color: 'blue',
-    fontSize: '50px',
+    color: ' white',
     cursor: 'pointer',
+    fontSize: '35px',
+    marginRight: '10px',
   },
   youtubicon: {
-    margin: '10px',
-    color: '#FF0000',
-    fontSize: '50px',
+    color: ' white',
     cursor: 'pointer',
+    fontSize: '35px',
+    marginRight: '10px',
   },
   twtricon: {
-    margin: '10px',
-    color: ' #00acee',
-    fontSize: '50px',
+    color: ' white',
     cursor: 'pointer',
+    fontSize: '35px',
+    marginRight: '10px',
   },
   instaicon: {
-    margin: '10px',
-    color: '#833AB4',
-    fontSize: '50px',
+    color: ' white',
     cursor: 'pointer',
+    fontSize: '35px',
+    marginRight: '10px',
   },
 
   fullContainer: { height: '100vh' },
@@ -165,6 +179,7 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       color: '#02b6e5',
     },
+    textAlign: 'right',
   },
   whatsIcon: {
     color: 'white',
@@ -184,11 +199,86 @@ const useStyles = makeStyles((theme) => ({
 
     marginLeft: '9%',
   },
-  bnrcss:{
-    position: "absolute",
-     color:'black',
-    marginTop:"-20%",
-    right: "30%"
+  bnrcss: {
+    position: 'absolute',
+    color: 'black',
+    marginTop: '-20%',
+    right: '30%',
+  },
+  bannerCaption: {
+    position: 'absolute',
+    top: '30%',
+    textAlign: 'right',
+    
+    right: '30px',
+    '& h4': {
+      fontSize: '24px',
+    },
+    '& button':{
+      marginTop:'10px'
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '10px',
+      marginBottom: '15px',
+      top: '20%',
+      '& h4': {
+        fontSize: '15px',
+        textAlign: 'right',
+      },
+    },
+  },
+  
+  bannerCaptionP: {
+    fontSize: '24px',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '15px',
+    },
+  },
+  bannerCards: { marginTop: '15px', marginBottom: '5px' },
+  enquiryModal: {
+    position: 'absolute',
+    textAlign: 'center',
+    width: '400px',
+    margin: 'auto',
+  },
+  marTop20: { marginTop: '50px' },
+  enquiryModalBox: {
+    textAlign: 'center',
+    alignItems: 'center',
+    backgroundColor: 'whitesmoke',
+    margin: ' 5% ',
+    '& button': {
+      backgroundColor: '#777',
+    },
+  },
+  viewAllBtn: { textAlign: 'center' },
+  viewAll: {
+    '& a': {
+      border: '1px solid rgb(1, 127, 160)',
+      padding: ' 8px 20px 5px 20px',
+      display: 'inline-block',
+      TextDecoderStream: 'none',
+      borderRadius: '4px',
+      margin: '30px 0 0 0',
+      alignItems: 'center',
+    },
+  },
+  footerQuick: {
+    fontSize: '20px',
+    margin: '0px 0px 20px',
+  },
+  footerQuickLinks: {
+    '& a': {
+      color: '#fff',
+      fontSize: '15px',
+      lineHeight: '30px',
+    },
+  },
+  socialFooter: { marginTop: '20px' },
+
+  hpcontent:{
+    marginTop:'50px',
+    fontSize:'20px'
   }
 }));
 export default useStyles;

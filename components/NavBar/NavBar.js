@@ -24,8 +24,8 @@ export const NavBarLink = () => {
       </List>
       <List   >
       <ListItem>
-      <NextLink href="/services" passHref>
-          <Link className={classes.linkhover}>Services</Link>
+      <NextLink href="/category-products" passHref>
+          <Link className={classes.linkhover}>Category</Link>
         </NextLink>
       </ListItem>
       </List>

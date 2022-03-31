@@ -7,10 +7,11 @@ import {
   MenuItem,
   Select,
   Typography,
+  Link
 } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { useRouter } from 'next/router';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Layout from '../components/Layout';
 import db from '../utils/db';
 import Product from '../models/Product';
@@ -20,6 +21,9 @@ import { Store } from '../utils/Store';
 import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
 import { Pagination } from '@material-ui/lab';
+import NextLink from "next/link";
+import { useSnackbar } from 'notistack';
+import { getError } from '../utils/error';
 
 const PAGE_SIZE = 3;
 
@@ -47,6 +51,8 @@ const ratings = [1, 2, 3, 4, 5];
 export default function Search(props) {
   const classes = useStyles();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
   const {
     query = 'all',
     category = 'all',
@@ -108,13 +114,24 @@ export default function Search(props) {
   const addToCartHandler = async (product) => {
     const existItem = state.cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/products/${product._id}`);
-    if (data.countInStock < quantity) {
-      window.alert('Sorry. Product is out of stock');
-      return;
+
+    setLoading(true);
+    try{
+      const { data } = await axios.get(`/api/products/${product._id}`);
+      setLoading(false);
+      enqueueSnackbar('Product added successfully', { variant: 'success' });
+
+      if (data.countInStock < quantity) {
+        window.alert('Sorry. Product is out of stock');
+        return;
+      }
+      dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+      router.push('/cart');
+
+    }catch(err){
+      setLoading(false);
+      enqueueSnackbar(getError(err), { variant: 'error' });
     }
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-    router.push('/cart');
   };
   return (
     <Layout title="Search">
@@ -175,6 +192,22 @@ export default function Search(props) {
                   ))}
                 </Select>
               </Box>
+            </ListItem>
+            {/* category */}
+            <ListItem>
+              <NextLink   href='/category-products/secondhand-refurbished-hp-laptops' passHref >
+                <Link>HP Laptops</Link>
+              </NextLink>
+            </ListItem>
+            <ListItem>
+              <NextLink   href='/category-products/secondhand-refurbished-dell-laptops' passHref >
+                <Link>Dell Laptops</Link>
+              </NextLink>
+            </ListItem>
+            <ListItem>
+              <NextLink   href='/category-products/secondhand-refurbished-lenovo-laptops' passHref >
+                <Link>Lenovo Laptops</Link>
+              </NextLink>
             </ListItem>
           </List>
         </Grid>

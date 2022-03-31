@@ -14,12 +14,25 @@ import {
 import axios from 'axios';
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import useStyles from '../utils/styles';
+// import { SMTPClient } from 'emailjs';
+
 
 export default function EnquiryModal({ handleClose, open }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
+ const classes =useStyles()
+
+//  const client = new SMTPClient({
+//   user: process.env.mail,
+//   password: process.env.password,
+//   host: 'smtp.gmail.com',
+//   ssl:true
+// });
+
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -35,32 +48,52 @@ export default function EnquiryModal({ handleClose, open }) {
       console.log(err);
       return err;
     }
-  };
+    // email
+    // const client = new SMTPClient({
+    //   user: process.env.mail,
+    //   password: process.env.password,
+    //   host: 'smtp.gmail.com',
+    //   ssl:true
+    // });
+    
+    // try{
+    
+     
+    //   client.send(
+    //     {
+    //       text: `${message}`,
+    //       from: process.env.mail,
+    //       to: `${email}`,
+    //       subject:  'Laptop Enquiry',
+         
+    //     }
+    //     )
+    //   }
+    // catch(e){
+    //   res.status(400).end(JSON.stringify({ message:"Error" }))
+    //   return;
+    // }
+    
+   
+  //   res.status(200).end(JSON.stringify({ message:'Send Mail' }))
+   };
 
   return (
     <Modal
       open={open}
       onClose={handleClose}
-      style={{
-        position: 'absolute',
-        textAlign: 'center',
-        width: '400px',
-        margin: 'auto',
-      }}
+    
+      className={classes.enquiryModal}
     >
       <Box
-        style={{
-          textAlign: 'center',
-          alignItems: 'center',
-          backgroundColor: 'whitesmoke',
-          margin: ' 5% ',
-        }}
+        
+        className={classes.enquiryModalBox}
       >
         <Grid>
           <List>
-            <ListItem>
-              {' '}
-              <CloseIcon onClick={handleClose} />
+            <ListItem    >
+              {' '}<Button  onClick={handleClose}> <CloseIcon  /></Button>
+               
             </ListItem>
           </List>
 

@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import NextLink from 'next/link';
-import Rating from '@material-ui/lab/Rating';
+
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import useStyles from '../utils/styles';
 import HomeIcon from '@mui/icons-material/Home';
@@ -22,17 +22,11 @@ import Image from 'next/image';
 export default function ProductItem({ product, addToCartHandler }) {
   const classes = useStyles();
 
-  const whatsAppLink = 'https://web.whatsapp.com/';
-
   return (
     <Card>
       <NextLink href={`/product/${product.slug}`} passHref>
         <CardActionArea>
-          <CardMedia
-          // component="img"
-          // image={product.image}
-          // title={product.name}
-          >
+          <CardMedia>
             <Image
               src={product.image}
               alt={product.name}
@@ -54,7 +48,9 @@ export default function ProductItem({ product, addToCartHandler }) {
           className={classes.whatsIcon}
           variant="contained"
           startIcon={<WhatsAppIcon />}
-          href={'https://web.whatsapp.com/'}
+          href="https://wa.me/7985574363"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           More Info
         </Button>

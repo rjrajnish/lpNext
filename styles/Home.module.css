@@ -126,7 +126,10 @@
     width: 100%;
     flex-direction: column;
   }
-  /* .linkgg{
-
-  } */
+  .makeStyles-bannerCaptionP-40{
+    font-size:16px !important;
+  }
+  .makeStyles-bannerCaption-39 h4{  
+    font-size:17px;
+  }
 }

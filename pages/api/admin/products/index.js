@@ -26,6 +26,14 @@ handler.post(async (req, res) => {
     description: 'sample description',
     rating: 0,
     numReviews: 0,
+    core:'I5',
+    display:'14 INCH',
+    ram:'8GB',
+    modal:'modal Name',
+    disk:'320GB',
+    generation:'5th',
+    
+
   });
 
   const product = await newProduct.save();

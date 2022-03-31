@@ -43,7 +43,7 @@ import Footer from './Footer';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import { AddCircleTwoTone } from '@material-ui/icons';
+ 
 
 export default function Layout({ title, description, children }) {
   const router = useRouter();
@@ -107,13 +107,7 @@ export default function Layout({ title, description, children }) {
     fetchCategories();
   }, []);
 
-
-  // dark and light mode switch handler
-  // const darkModeChangeHandler = () => {
-  //   dispatch({ type: darkMode ? 'DARK_MODE_OFF' : 'DARK_MODE_ON' });
-  //   const newDarkMode = !darkMode;
-  //   Cookies.set('darkMode', newDarkMode ? 'ON' : 'OFF');
-  // };
+   
   const [anchorEl, setAnchorEl] = useState(null);
   const loginClickHandler = (e) => {
     setAnchorEl(e.currentTarget);
@@ -141,10 +135,10 @@ export default function Layout({ title, description, children }) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {/* <NavLinks /> */} 
-       
+        {/* <NavLinks /> */}
+
         <AppBar position="sticky" className={classes.navbar}>
-          <Toolbar className={classes.toolbar}   >
+          <Toolbar className={classes.toolbar}>
             <Box display="flex" alignItems="center">
               <IconButton
                 edge="start"
@@ -154,8 +148,8 @@ export default function Layout({ title, description, children }) {
               >
                 <MenuIcon size="large" className={classes.navbarButton} />
               </IconButton>
-              <NextLink href="/" passHref  >
-                <Link     >
+              <NextLink href="/" passHref>
+                <Link>
                   <Typography className={classes.brand}>
                     Lapy<span style={{ color: '#02b6e5' }}>Bazaar</span>{' '}
                   </Typography>
@@ -205,11 +199,11 @@ export default function Layout({ title, description, children }) {
                     </ListItem>
                   </NextLink>
                 ))}
-                
-                <Typography  ><LocalPhoneIcon /> +91-987654321</Typography>
-                
+
+                <Typography>
+                  <LocalPhoneIcon /> +91-987654321
+                </Typography>
               </List>
-               
             </Drawer>
 
             <div className={classes.searchSection}>
@@ -229,16 +223,18 @@ export default function Layout({ title, description, children }) {
                 </IconButton>
               </form>
             </div>
-            <Box>
-                    <Typography color='primary' className={ classes.searchSection}><LocalPhoneIcon /> +91-987654321</Typography>
-                  </Box>
+            <Box className={classes.searchSection}>
+              <Link
+                style={{ color: '#fff', textDecoration: 'none' }}
+                href="tel:+91-987654321"
+              >
+                <span style={{ color: 'red' }}>
+                  <LocalPhoneIcon />{' '}
+                </span>{' '}
+                +91-987654321{' '}
+              </Link>
+            </Box>
             <div className={classes.linkhover}>
-              {/* <Switch
-                checked={darkMode}
-                onChange={darkModeChangeHandler}
-              ></Switch> */}
-
-           
               <NextLink href="/cart" passHref>
                 <Link>
                   <Typography component="span">
@@ -256,17 +252,16 @@ export default function Layout({ title, description, children }) {
                   </Typography>
                 </Link>
               </NextLink>
-              
+
               {userInfo ? (
                 <>
-                 
                   <Button
                     aria-controls="simple-menu"
                     aria-haspopup="true"
                     onClick={loginClickHandler}
                     className={classes.navbarButton}
                   >
-                   <AccountCircleIcon />
+                    <AccountCircleIcon />
                     {userInfo.name}
                   </Button>
                   <Menu
@@ -303,8 +298,11 @@ export default function Layout({ title, description, children }) {
               ) : (
                 <NextLink href="/login" passHref>
                   <Link>
-                  
-                    <Typography component="span"> <AccountCircleIcon />Login</Typography>
+                    <Typography component="span">
+                      {' '}
+                      <AccountCircleIcon />
+                      Login
+                    </Typography>
                   </Link>
                 </NextLink>
               )}
@@ -315,7 +313,6 @@ export default function Layout({ title, description, children }) {
 
         <footer className={classes.footer}>
           <Footer />
-          {/* <Typography>All rights reserved. Next Amazona.</Typography> */}
         </footer>
       </ThemeProvider>
     </div>

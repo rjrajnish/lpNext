@@ -50,6 +50,7 @@ export default function ProductScreen(props) {
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
       await axios.post(
         `/api/products/${product._id}/reviews`,
@@ -89,14 +90,23 @@ export default function ProductScreen(props) {
     const existItem = state.cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
-    if (data.countInStock < quantity) {
-      window.alert('Sorry. Product is out of stock');
-      return;
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`/api/products/${product._id}`);
+      setLoading(false);
+      enqueueSnackbar('Product added successfully', { variant: 'success' });
+
+      if (data.countInStock < quantity) {
+        window.alert('Sorry. Product is out of stock');
+        return;
+      }
+      dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+      router.push('/cart');
+    } catch (err) {
+      setLoading(false);
+      enqueueSnackbar(getError(err), { variant: 'error' });
     }
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-    router.push('/cart');
   };
-  console.log(product.relateImages[1]);
 
   const [defaultImg, setDefaultImg] = useState(product.relateImages[0]);
 
@@ -216,7 +226,9 @@ export default function ProductScreen(props) {
                     className={classes.whatsIcon}
                     variant="contained"
                     startIcon={<WhatsAppIcon />}
-                    href={'https://web.whatsapp.com/'}
+                    href="https://wa.me/7985574363"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     More Info
                   </Button>
@@ -241,92 +253,88 @@ export default function ProductScreen(props) {
       <Grid>
         <Typography variant="h5">Description</Typography>
         <hr />
-        <List>
-          <ListItem>
-            <Table>
-              <TableHead>Processor And Memory Features</TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell>Modal Number</TableCell>
-                  <TableCell>
-                    <ArrowRightIcon /> {product.modal}{' '}
-                  </TableCell>
-                </TableRow>
+        <Typography variant="h6">Processor and Memory Feature</Typography>
+        <Table>
+          <TableHead></TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>Modal Number</TableCell>
+              <TableCell>
+                <ArrowRightIcon /> {product.modal}{' '}
+              </TableCell>
+            </TableRow>
 
-                <TableRow>
-                  <TableCell>Processor Name</TableCell>
-                  <TableCell>
-                    <ArrowRightIcon /> {product.core}{' '}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Graphic Processor</TableCell>
-                  <TableCell>
-                    <ArrowRightIcon /> Intel Integrated HD Graphics
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>RAM Type</TableCell>
-                  <TableCell>
-                    <ArrowRightIcon /> {product.ram}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Storage</TableCell>
-                  <TableCell>
-                    <ArrowRightIcon /> {product.disk} HHD
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </ListItem>
-        </List>
-        <List>
-          <ListItem>
-            <Table>
-              <TableHead>Additional Features</TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell>OS Architecture</TableCell>
-                  <TableCell>
-                    <ArrowRightIcon /> 64 bit processor{' '}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Operating System </TableCell>
-                  <TableCell>
-                    <ArrowRightIcon /> Windows 10
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Screen Resolution </TableCell>
-                  <TableCell>
-                    <ArrowRightIcon /> 1600 x 900 pixel
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Wireless LAN</TableCell>
-                  <TableCell>
-                    <ArrowRightIcon /> 802.11 a/b/g/n
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Ethernet</TableCell>
-                  <TableCell>
-                    <ArrowRightIcon />
-                    Gigabit Ethernet
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Generic Name </TableCell>
-                  <TableCell>
-                    <ArrowRightIcon /> Refurbished laptops ,Commercial laptops
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </ListItem>
-        </List>
+            <TableRow>
+              <TableCell>Processor Name</TableCell>
+              <TableCell>
+                <ArrowRightIcon /> {product.core}{' '}
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Graphic Processor</TableCell>
+              <TableCell>
+                <ArrowRightIcon /> Intel Integrated HD Graphics
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>RAM Type</TableCell>
+              <TableCell>
+                <ArrowRightIcon /> {product.ram}
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Storage</TableCell>
+              <TableCell>
+                <ArrowRightIcon /> {product.disk} HHD
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+
+        <br />
+        <Typography variant="h6">Additional Features</Typography>
+        <Table>
+          <TableHead></TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>OS Architecture</TableCell>
+              <TableCell>
+                <ArrowRightIcon /> 64 bit processor{' '}
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Operating System </TableCell>
+              <TableCell>
+                <ArrowRightIcon /> Windows 10
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Screen Resolution </TableCell>
+              <TableCell>
+                <ArrowRightIcon /> 1600 x 900 pixel
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Wireless LAN</TableCell>
+              <TableCell>
+                <ArrowRightIcon /> 802.11 a/b/g/n
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Ethernet</TableCell>
+              <TableCell>
+                <ArrowRightIcon />
+                Gigabit Ethernet
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Generic Name </TableCell>
+              <TableCell>
+                <ArrowRightIcon /> Refurbished laptops ,Commercial laptops
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </Grid>
       {/* product page description */}
       <br />
