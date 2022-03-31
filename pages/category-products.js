@@ -32,15 +32,13 @@ export default function Home(props) {
   const { enqueueSnackbar } = useSnackbar();
 
   const { state, dispatch } = useContext(Store);
-  const { bestCommercialProducts, popularProducts, under20000Products } = props;
+  const { popularProducts, hpLaptops, dellLaptops, lenovoLaptops } = props;
   const addToCartHandler = async (product) => {
     const existItem = state.cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
-
-
     setLoading(true);
-    try{
+    try {
       const { data } = await axios.get(`/api/products/${product._id}`);
       setLoading(false);
       enqueueSnackbar('Product added successfully', { variant: 'success' });
@@ -51,8 +49,7 @@ export default function Home(props) {
       }
       dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
       router.push('/cart');
-
-    }catch(err){
+    } catch (err) {
       setLoading(false);
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
@@ -61,49 +58,101 @@ export default function Home(props) {
     <>
       <Layout>
         <Grid container spacing={2} style={{ margin: '50px 0' }}>
-          <Typography variant="h1">Popular Products</Typography>
-          <Grid container spacing={3}>
-            {popularProducts.map((product) => (
-              <Grid item md={3} key={product.name}>
-                <ProductItem
-                  product={product}
-                  addToCartHandler={addToCartHandler}
-                />
+          <Grid>
+            <Typography variant="h1">Popular Products</Typography>
+            <Grid container spacing={3}>
+              {popularProducts.map((product) => (
+                <Grid item md={3} key={product.name}>
+                  <ProductItem
+                    product={product}
+                    addToCartHandler={addToCartHandler}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+            <Grid className={classes.viewAllBtn}>
+              <Grid className={classes.viewAll}>
+                <NextLink href="/search" passHref>
+                  <Link>View All</Link>
+                </NextLink>
               </Grid>
-            ))}
-          </Grid>
+            </Grid>
 
-          <br />
-          <br />
-          <Typography variant="h1">Best Commercial Products</Typography>
-          <Grid container spacing={3}>
-            {bestCommercialProducts.map((product) => (
-              <Grid item md={3} key={product.name}>
-                <ProductItem
-                  product={product}
-                  addToCartHandler={addToCartHandler}
-                />
+            <br />
+            <br />
+            <Typography variant="h1">
+              REFURBISHED / SECONDHAND HP LAPTOPS{' '}
+            </Typography>
+            <Grid container spacing={3}>
+              {hpLaptops.map((product) => (
+                <Grid item md={3} key={product.name}>
+                  <ProductItem
+                    product={product}
+                    addToCartHandler={addToCartHandler}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+            <Grid className={classes.viewAllBtn}>
+              <Grid className={classes.viewAll}>
+                <NextLink
+                  href="/category-products/secondhand-refurbished-hp-laptops"
+                  passHref
+                >
+                  <Link>View All</Link>
+                </NextLink>
               </Grid>
-            ))}
-          </Grid>
+            </Grid>
 
-         
-          <br />
-          <br />
-          <Typography variant="h1">REFURBISHED LAPTOPS UNDER 25000</Typography>
-          <Grid container spacing={3}>
-            {bestCommercialProducts.map((product) => (
-              <Grid item md={3} key={product.name}>
-                <ProductItem
-                  product={product}
-                  addToCartHandler={addToCartHandler}
-                />
+            <br />
+            <br />
+            <Typography variant="h1">
+              REFURBISHED / SECONDHAND DELL LAPTOPS
+            </Typography>
+            <Grid container spacing={3}>
+              {dellLaptops.map((product) => (
+                <Grid item md={3} key={product.name}>
+                  <ProductItem
+                    product={product}
+                    addToCartHandler={addToCartHandler}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+            <Grid className={classes.viewAllBtn}>
+              <Grid className={classes.viewAll}>
+                <NextLink
+                  href="/category-products/secondhand-refurbished-dell-laptops"
+                  passHref
+                >
+                  <Link>View All</Link>
+                </NextLink>
               </Grid>
-            ))}
-          </Grid>
+            </Grid>
 
-          <br />
-          <br />
+            <br />
+            <br />
+            <Typography variant="h1">
+              REFURBISHED / SECONDHAND LENOVO LAPTOPS
+            </Typography>
+            <Grid container spacing={3}>
+              {lenovoLaptops.map((product) => (
+                <Grid item md={3} key={product.name}>
+                  <ProductItem
+                    product={product}
+                    addToCartHandler={addToCartHandler}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+            <Grid className={classes.viewAllBtn}>
+              <Grid className={classes.viewAll}>
+                <NextLink href="/category-products" passHref>
+                  <Link>View All</Link>
+                </NextLink>
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
       </Layout>
     </>
@@ -112,24 +161,20 @@ export default function Home(props) {
 
 export async function getServerSideProps() {
   await db.connect();
-  const popularProductsDocs = await Product.find({}).lean();
+  const popularProductsDocs = await Product.find({ rating: 5 }).lean().limit(4);
 
-  const bestCommercialProductsDocs = await Product.find({}, '-reviews')
-    .lean()
-    .sort({
-      rating: -1,
-    })
-    .limit(8);
-   
+  const hpProductsDocs = await Product.find({ brand: 'HP' }).lean().limit(4);
+
+  const dellProductsDocs = await Product.find({brand:'Dell'}).lean().limit(4);
+  const lenovoProductsDocs = await Product.find({brand:'Lenovo'}).lean().limit(4);
 
   await db.disconnect();
   return {
     props: {
       popularProducts: popularProductsDocs.map(db.convertDocToObj),
-      bestCommercialProducts: bestCommercialProductsDocs.map(
-        db.convertDocToObj
-      ),
-      
+      hpLaptops: hpProductsDocs.map(db.convertDocToObj),
+      dellLaptops: dellProductsDocs.map(db.convertDocToObj),
+      lenovoLaptops: lenovoProductsDocs.map(db.convertDocToObj),
     },
   };
 }

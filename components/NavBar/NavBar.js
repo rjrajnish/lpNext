@@ -10,7 +10,7 @@ export const NavBarLink = () => {
     <>
     <List  >
       <ListItem>
-        <NextLink href="/search" passHref>
+        <NextLink href="/category-products" passHref>
           <Link  className={classes.linkhover}  >Our Products</Link>
         </NextLink>
       </ListItem>
@@ -24,7 +24,7 @@ export const NavBarLink = () => {
       </List>
       <List   >
       <ListItem>
-      <NextLink href="/category-products" passHref>
+      <NextLink href="/search" passHref>
           <Link className={classes.linkhover}>Category</Link>
         </NextLink>
       </ListItem>

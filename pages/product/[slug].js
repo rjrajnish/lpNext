@@ -285,7 +285,7 @@ export default function ProductScreen(props) {
             <TableRow>
               <TableCell>Storage</TableCell>
               <TableCell>
-                <ArrowRightIcon /> {product.disk} HHD
+                <ArrowRightIcon /> {product.disk}  
               </TableCell>
             </TableRow>
           </TableBody>
