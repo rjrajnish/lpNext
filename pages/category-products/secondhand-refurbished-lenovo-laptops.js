@@ -34,7 +34,7 @@ export default function LenovoLaptops(props) {
       <Grid container   style={{ marginTop: '30px' }}>
         <Grid item    xs={12} sm={12}  >
           <Image
-            src="/lapyBanner/lanovoPageBanner.jpeg"
+            src="/lapyBanner/lenovoPageBanner.jpg"
             alt="lenovo"
             width={1400}
             height={250}
