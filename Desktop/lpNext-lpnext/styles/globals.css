@@ -1,0 +1,248 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.MuiLink-underlineHover:hover {
+  text-decoration: none !important;
+}
+
+button.MuiButtonBase-root {
+  color: #fff !important;
+}
+
+.makeStyles-navbar-1 a {
+  display: inline-block !important;
+}
+
+.makeStyles-footerQuickLinks a {
+  color: #fff !important;
+  line-height: 27px;
+}
+
+.socialFooter {
+  margin: 15px 0 0 0;
+}
+
+/* header search hover */
+.makeStyles-navbar-1 form.makeStyles-searchForm-19 button.makeStyles-iconButton-21:hover {
+  background-color: #203040;
+}
+
+/* popup css 03-04-2022 */
+.makeStyles-enquiryModal-43 {
+  display: flex;
+  align-items: center;
+}
+.makeStyles-enquiryModal-43 .makeStyles-enquiryModalBox-45 {
+  flex: 1;
+  outline: none;
+}
+.makeStyles-enquiryModal-43 .makeStyles-enquiryModalBox-45 li.MuiListItem-root.MuiListItem-gutters {
+  justify-content: flex-end;
+}
+.makeStyles-enquiryModal-43 .makeStyles-enquiryModalBox-45 button.MuiButton-text, .makeStyles-enquiryModal-43 .makeStyles-enquiryModalBox-45 button.MuiButton-containedPrimary{
+  background: #02b6e5;
+}
+.makeStyles-enquiryModal-43 .makeStyles-enquiryModalBox-45 button.MuiButton-text:hover, .makeStyles-enquiryModal-43 .makeStyles-enquiryModalBox-45 button.MuiButton-containedPrimary:hover{
+  background: #333;
+}
+
+/* left menu toggle sidebar icon alignment 03-04-2022 */
+.MuiDrawer-paperAnchorLeft p.MuiTypography-root.MuiTypography-body1 svg.MuiSvgIcon-root {
+  margin-left: 14px;
+}
+ul.nav_sidebar {
+  display: none;
+}
+
+/* product detail page buttons alignment 03-04-2022 */
+.makeStyles-main-4 {
+  padding-bottom: 40px;
+}
+.makeStyles-main-4 .MuiGrid-root.MuiGrid-item .MuiGrid-root.MuiGrid-item  a.MuiButton-contained.makeStyles-whatsIcon-36, .makeStyles-main-4 .MuiGrid-root.MuiGrid-item .MuiGrid-root.MuiGrid-item button.MuiButton-contained.MuiButton-containedPrimary {
+  line-height: initial;
+}
+
+/* unnecessory Carousel indicators */
+.makeStyles-main-4 .Carousel-indicators-806 {
+  display: none;
+}
+.makeStyles-main-4 .MuiGrid-item.MuiGrid-grid-md-4.MuiGrid-grid-lg-4 .makeStyles-bannerCards-42.MuiPaper-elevation1 {
+  margin-top: 12px;
+}
+
+/* footer links 03-04-2022 */
+footer.makeStyles-footer-5 .MuiGrid-root.MuiGrid-item {
+  margin-bottom: 20px;
+}
+.makeStyles-footer-5 a.MuiTypography-root:hover, .makeStyles-navbar-1 .makeStyles-linkhover-35 .MuiTypography-root:hover, .makeStyles-footer-5 div svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium:hover, .makeStyles-main-4 ul.MuiList-root.MuiList-padding li.MuiListItem-root.MuiListItem-gutters svg.MuiSvgIcon-root{
+  color: #02b6e5;
+}
+.makeStyles-navbar-1 .makeStyles-searchSection-18 .MuiTypography-root.MuiTypography-colorPrimary:hover {
+  color: #02b6e5 !important;
+}
+.makeStyles-footer-5 .MuiBox-root.makeStyles-footerPad-321 {
+  padding-bottom: 0;
+}
+.makeStyles-main-4 ul.MuiList-root.MuiList-padding li.MuiListItem-root.MuiListItem-gutters svg.MuiSvgIcon-root:hover{
+  color: #203040;
+}
+
+@keyframes smoothBounce{
+  from { transform: translate3d(0, 0, 0);}
+  to { transform: translate3d(0, 10px, 0);}
+}
+
+/* media query */
+@media all and (max-width: 1230px) {
+  .makeStyles-navbar-1 .makeStyles-searchSection-18 ul li a {
+      margin-left: 0;
+  }
+  .makeStyles-navbar-1 a, .makeStyles-navbar-1 .makeStyles-linkhover-35 span.MuiTypography-body1 {
+      font-size: 14px;
+  }
+  .makeStyles-main-4 .CarouselItem .MuiGrid-item h4.MuiTypography-h4 {
+      font-size: 21px;
+  }
+  .makeStyles-main-4 .CarouselItem .MuiGrid-item p.MuiTypography-body1 {
+      font-size: 19px;
+  }
+}
+
+@media all and (max-width: 1230px) { 
+  .makeStyles-navbar-1 a, .makeStyles-navbar-1 .makeStyles-linkhover-35 span.MuiTypography-body1 {
+      font-size: 12px;
+  }
+  .makeStyles-navbar-1 .makeStyles-linkhover-35 span.MuiTypography-body1 svg {
+      font-size: 1.2rem;
+  }
+}
+
+@media all and (max-width: 1100px) {  
+  .makeStyles-main-4 .CarouselItem .MuiGrid-item h4.MuiTypography-h4 {
+      font-size: 18px;
+  }
+  .makeStyles-main-4 .CarouselItem .MuiGrid-item p.MuiTypography-body1 {
+      font-size: 16px;
+  }
+}
+
+@media all and (max-width: 1070px) { 
+  .makeStyles-navbar-1 a.MuiTypography-colorPrimary p.makeStyles-brand-2 {
+      font-size: 1.5rem;
+  }
+  .makeStyles-navbar-1 .makeStyles-searchSection-18 ul li {
+      padding: 8px;
+  }
+  .makeStyles-navbar-1 a, .makeStyles-navbar-1 .makeStyles-linkhover-35 span.MuiTypography-body1 {
+      font-size: 11px;
+  }
+}
+
+@media all and (max-width: 991px) {
+  .MuiGrid-item.MuiGrid-grid-md-9 .MuiPaper-elevation1 .MuiGrid-item.MuiGrid-grid-md-3 {
+    flex-basis: 50%;
+  }
+}
+
+/* products discription & price alignment 03-04-2022 */
+@media all and (max-width: 767px) {
+  .makeStyles-main-4 h1.MuiTypography-h1, .makeStyles-main-4 .MuiGrid-root.MuiGrid-container .MuiCardContent-root {
+      text-align: center;
+  }
+  .styles-module_floatingWhatsapp__1akvz .styles-module_whatsappButton__IWx9V {
+      width: 45px;
+      height: 45px;
+  }
+  ul.nav_sidebar {
+      display: block;
+      background: #f9f9f9;
+      box-shadow: 1px 1px 20px rgb(0 0 0 / 14%);
+      margin-top: 2vh;
+  }
+  ul.nav_sidebar li:hover {
+      background: #02b6e5;
+  }
+  ul.nav_sidebar li a {
+      color: #333;
+      cursor: pointer;
+      flex: 1;
+  }
+  ul.nav_sidebar li a:hover {
+      color: #fff;
+  }
+  .makeStyles-main-4 .CarouselItem .MuiGrid-item h4.MuiTypography-h4 {
+      font-size: 14px;
+  }
+  .makeStyles-main-4 .CarouselItem .MuiGrid-item p.MuiTypography-body1 {
+      font-size: 13px;
+  }
+  body .MuiTypography-h1 {
+    font-size: 1.2rem;
+  }
+  body .MuiTypography-h4 {
+    font-size: 1.1rem;
+  }
+
+  /* dashboard products table 03-04-2022 */
+  .MuiListItem-gutters table.MuiTable-root tr td button.MuiButton-containedSizeSmall {
+      margin-top: 5px;
+  }
+
+  /* popup */
+  body [role="presentation"] {
+      width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .makeStyles-bannerCaption h4 {
+    font-size: 15px !important;
+  }
+}
+
+/* product screen device & carosual 03-04-2022 */
+@media all and (max-width: 480px) {
+  body .makeStyles-main-4 {
+      max-width: 100%;
+  }
+  .makeStyles-main-4 .CarouselItem .MuiGrid-root.MuiGrid-item {
+      top: 12%;
+  }
+  .makeStyles-main-4 .CarouselItem .MuiGrid-item h4.MuiTypography-h4 {
+      font-size: 14px;
+      max-width: 50vw;
+      margin-bottom: 6px;
+  }
+  .makeStyles-main-4 .CarouselItem .MuiGrid-item 
+ p.MuiTypography-body1 {
+      font-size: 12px;
+  }
+  .makeStyles-main-4 .CarouselItem .MuiGrid-item button.MuiButton-containedPrimary {
+      font-size: .7rem;
+  }
+  .MuiGrid-item.MuiGrid-grid-md-9 .MuiPaper-elevation1 .MuiGrid-item.MuiGrid-grid-md-3 {
+      -webkit-flex-basis: 50%;
+      flex-basis: 100%;
+  }
+}
+
+/* smallest mobile media screen product buttons 03-04-2022 */
+@media all and (max-width: 340px) {
+  .makeStyles-main-4 .MuiGrid-container .MuiGrid-root.MuiGrid-item .MuiCardActions-root.MuiCardActions-spacing .makeStyles-whatsIcon-351, .makeStyles-main-4 .MuiGrid-container .MuiGrid-root.MuiGrid-item .MuiCardActions-root.MuiCardActions-spacing button.MuiButtonBase-root.MuiButton-containedPrimary.MuiButton-containedSizeSmall {
+      font-size: 11.5px;
+  }
+}
